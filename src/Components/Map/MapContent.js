@@ -13,7 +13,7 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 
-const features = "hello"
+const features = "hello world this is new one"
 console.log(features);
 function MapContent(props) {
     const coordinates = [
