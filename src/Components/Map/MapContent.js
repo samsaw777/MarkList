@@ -40,6 +40,7 @@ function MapContent(props) {
         map = useMap();
         map.setView(coordinates, map.getZoom());
         map.on('click',(e)=>{
+            console.log(e)
             const {lat, lng} = e.latlng
             setShow(true)
             setLong(lng)
