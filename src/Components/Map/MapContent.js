@@ -5,6 +5,9 @@ import L from 'leaflet'
 import '../CSS/Input.css'  
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import Grid from '@material-ui/core/Grid'
+import DateFnsUtils from '@date-io/date-fns'
+import { MuiPickersUtilsProvider, KeyboardTimePicker} from '@material-ui/pickers'
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -12,10 +15,10 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-
-const features = "hello world this is new one"
-console.log(features);
 function MapContent(props) {
+    // const currentDate = new Date();
+    // const currentTime = currentDate.getHours() + ':' + currentDate.getMinutes();
+    // console.log(currentTime)
     const coordinates = [
          props.coordinate.latitude, props.coordinate.longitude
     ]
@@ -24,6 +27,8 @@ function MapContent(props) {
     const[inputtwo,setInputTwo] = useState('')
     const[lat,setLat] = useState('')
     const [long,setLong] = useState('')
+    const [time,setTime] = useState(new Date())
+    console.log(time)
     // console.log(click)
     let map;
 
@@ -58,24 +63,41 @@ function MapContent(props) {
 
 
 
+      //Handling the Time output
+      const handleTime = e =>{
+          setTime(e)
+      }
+
+
+
 
       //Input Component
         const Inputform = ()=>{
             return(
                 <div className="Inputtab">
+                    <div>
                     <form onSubmit={showmarker}>
-                        <input 
-                        type='text'
-                        onChange={e => setInputOne(e.target.value)}
-                        value={inputone}
-                        />
-                        <input
-                        type='text'
-                        onChange={e => setInputTwo(e.target.value)}
-                        value={inputtwo}
-                        />
-                        <input type="submit" value="Submit"/>
+                        <Grid container className='grid'> 
+                            <input 
+                            className='todobox'
+                            type='text'
+                            placeholder='Enter your task you want do at selected place'
+                            onChange={e => setInputOne(e.target.value)}
+                            value={inputone}
+                            />
+                            <MuiPickersUtilsProvider utils={DateFnsUtils} className='timecontainer'>
+                                <KeyboardTimePicker
+                                    className='inputtime'
+                                    margin='normal'
+                                    id='timepicker'
+                                    value={time}
+                                    onChange={handleTime}
+                                />
+                            </MuiPickersUtilsProvider>
+                            </Grid>
+                            <input type="submit" value="Submit" className="submitbtn"/>
                     </form>
+                    </div>
                 </div>
             )
         }
