@@ -58,9 +58,10 @@ function MapContent(props) {
       //Add items
       const additems = e =>{
           e.preventDefault()
-          const newItem = {...currentItem,time:time}
+          const newItem = {...currentItem,time:time,coordinates:[lat,long]}
           if (newItem.text !==''){
               const items = [...totalitems,newItem]
+              window.localStorage.setItem('Item',JSON.stringify(items))
               setTotalItems(items)
               setCurrentItem({
                   text: '',
@@ -68,6 +69,7 @@ function MapContent(props) {
               })
               showmarker()
           }
+        //   storelocalstorage()
       }
 
       //Handing the Input and the marker
@@ -77,7 +79,10 @@ function MapContent(props) {
           setShow(false)
       }
 
-
+      //Storing into local storage
+    //   const storelocalstorage = ()=>{
+          
+    //   }
 
 
       //Handling the Time output
