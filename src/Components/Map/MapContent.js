@@ -23,12 +23,17 @@ function MapContent(props) {
          props.coordinate.latitude, props.coordinate.longitude
     ]
     const [show,setShow] = useState(false)
-    const[inputone, setInputOne] = useState('')
-    const[inputtwo,setInputTwo] = useState('')
     const[lat,setLat] = useState('')
     const [long,setLong] = useState('')
     const [time,setTime] = useState(new Date())
     console.log(time)
+    const [totalitems, setTotalItems] = useState([])
+    console.log(totalitems)
+    const [currentItem, setCurrentItem] = useState({
+        text: '',
+        key:''
+    })
+    console.log(currentItem)
     // console.log(click)
     let map;
 
@@ -50,11 +55,23 @@ function MapContent(props) {
       }
 
 
-
+      //Add items
+      const additems = e =>{
+          e.preventDefault()
+          const newItem = {...currentItem,time:time}
+          if (newItem.text !==''){
+              const items = [...totalitems,newItem]
+              setTotalItems(items)
+              setCurrentItem({
+                  text: '',
+                  key:''
+              })
+              showmarker()
+          }
+      }
 
       //Handing the Input and the marker
-      const showmarker = (e)=>{
-          e.preventDefault()
+      const showmarker = ()=>{
           L.marker([lat,long])
           .addTo(map)
           setShow(false)
@@ -76,14 +93,17 @@ function MapContent(props) {
             return(
                 <div className="Inputtab">
                     <div>
-                    <form onSubmit={showmarker}>
+                    <form onSubmit={additems}>
                         <Grid container className='grid'> 
                             <input 
                             className='todobox'
                             type='text'
                             placeholder='Enter your task you want do at selected place'
-                            onChange={e => setInputOne(e.target.value)}
-                            value={inputone}
+                            onChange={e => setCurrentItem({
+                                text: e.target.value,
+                                key: Date.now()
+                            })}
+                            value={currentItem.text}
                             />
                             <MuiPickersUtilsProvider utils={DateFnsUtils} className='timecontainer'>
                                 <KeyboardTimePicker
