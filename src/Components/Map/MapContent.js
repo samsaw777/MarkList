@@ -8,6 +8,7 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import Grid from '@material-ui/core/Grid'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, KeyboardTimePicker} from '@material-ui/pickers'
+import ShowInput from './Inputmap'
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -29,6 +30,8 @@ function MapContent(props) {
     console.log(time)
     const [totalitems, setTotalItems] = useState([])
     console.log(totalitems)
+    // const[getitems, setGetItems] = useState([])
+    // console.log(getitems)
     const [currentItem, setCurrentItem] = useState({
         text: '',
         key:''
@@ -36,10 +39,23 @@ function MapContent(props) {
     console.log(currentItem)
     // console.log(click)
     let map;
+    var localstorage = window.localStorage
+    var i  = window.localStorage.getItem('Item')
+    console.log(i)
+    // useEffect(() =>{
+    //     allstorage()
+    // },[])
 
 
-
-
+    // const allstorage = ()=>{
+    //     var values =[]
+    //     var key = Object.keys(localstorage)
+    //     var i = key.length
+    //      while(i--){
+    //          values.push(localstorage.getItem(key[i]))
+    //      }
+    //      setGetItems({...values})
+    // }
     // Show the map
     function Showmap({ coordinates }) {
         map = useMap();
@@ -149,6 +165,7 @@ function MapContent(props) {
                 {
                     show?Inputform():<div></div>
                 }
+                <ShowInput i={i}/>
             </div>
 
         </div>
