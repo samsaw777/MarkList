@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
  
 
 
-function Inputmap({i}) {
+function Inputmap() {
     var a = []
     a = JSON.parse(window.localStorage.getItem('Item'))
     console.log(a)
