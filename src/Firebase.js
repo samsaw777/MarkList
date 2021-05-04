@@ -2,12 +2,18 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 
 
-export const firebaseConfig = firebase.initializeApp({
-    apiKey: process.env.Firebase_API,
-    authDomain: process.env.Firebase_Domain,
-    projectId: process.env.Firebase_ID,
-    storageBucket: process.env.Firebase_Bucket,
-    messagingSenderId: process.env.SenderID,
-    appId: process.env.AppID,
-    measurementId: process.env.Firebase_MID
+const firebaseapp = firebase.initializeApp({
+    apiKey: process.env.REACT_APP_Firebase_API,
+    authDomain: process.env.REACT_APP_Firebase_Domain,
+    databaseURL: process.env.REACT_APP_Firebase_DatabaseURL,
+    projectId: process.env.REACT_APP_Firebase_ID,
+    storageBucket: process.env.REACT_APP_Firebase_Bucket,
+    messagingSenderId: process.env.REACT_APP_SenderID,
+    appId: process.env.REACT_APP_AppID,
+    measurementId: process.env.REACT_APP_Firebase_MID
   });
+
+
+  const db = firebaseapp.firestore()
+  export {db}
+//   firebase.analytics();

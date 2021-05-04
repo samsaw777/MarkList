@@ -9,6 +9,9 @@ import Grid from '@material-ui/core/Grid'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, KeyboardTimePicker} from '@material-ui/pickers'
 import ShowInput from './Inputmap'
+import {db} from '../../Firebase'
+
+console.log(db)
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -74,16 +77,29 @@ function MapContent(props) {
       //Add items
       const additems = e =>{
           e.preventDefault()
-          const newItem = {...currentItem,time:time.getTime(),coordinates:[lat,long]}
-          if (newItem.text !==''){
-              const items = [...totalitems,newItem]
-              window.localStorage.setItem('Item',JSON.stringify(items))
-              setTotalItems(items)
-              setCurrentItem({
-                  text: '',
-                  key:''
-              })
-              showmarker()
+          if (currentItem.text !==''){
+            //   const items = [...totalitems,newItem]
+            //   window.localStorage.setItem('Item',JSON.stringify(items))
+            //   setTotalItems(items)
+            //   setCurrentItem({
+            //       text: '',
+            //       key:''
+            //   })
+            db.collection("marklist").add({
+                Task: currentItem.text,
+                Key: currentItem.key,
+                Time: time.toLocaleString(),
+                Latitude: lat,
+                Longitude: long
+            })
+            .then(()=>{
+                console.log("Documents added sucessfully")
+            })
+            .catch((e)=>{
+                console.error("Error while sending",e)
+            })
+              
+            showmarker()
           }
         //   storelocalstorage()
       }
