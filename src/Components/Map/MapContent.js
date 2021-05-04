@@ -1,4 +1,4 @@
-import React,{useEffect,useState}  from 'react'
+import React,{useState}  from 'react'
 import { MapContainer, TileLayer, useMap} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
@@ -20,9 +20,6 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function MapContent(props) {
-    // const currentDate = new Date();
-    // const currentTime = currentDate.getHours() + ':' + currentDate.getMinutes();
-    // console.log(currentTime)
     const coordinates = [
          props.coordinate.latitude, props.coordinate.longitude
     ]
@@ -31,35 +28,12 @@ function MapContent(props) {
     const [long,setLong] = useState('')
     const [time,setTime] = useState(new Date())
     console.log(time)
-    const [totalitems, setTotalItems] = useState([])
-    console.log(totalitems)
-    // const[getitems, setGetItems] = useState([])
-    // console.log(getitems)
     const [currentItem, setCurrentItem] = useState({
         text: '',
         key:''
     })
     console.log(currentItem)
-    // console.log(click)
     let map;
-    // var localstorage = window.localStorage
-    // var i  = window.localStorage.getItem('Item')
-    // console.log(i)
-    // useEffect(() =>{
-    //     allstorage()
-    // },[])
-
-
-    // const allstorage = ()=>{
-    //     var values =[]
-    //     var key = Object.keys(localstorage)
-    //     var i = key.length
-    //      while(i--){
-    //          values.push(localstorage.getItem(key[i]))
-    //      }
-    //      setGetItems({...values})
-    // }
-    // Show the map
     function Showmap({ coordinates }) {
         map = useMap();
         map.setView(coordinates, map.getZoom());
@@ -73,18 +47,9 @@ function MapContent(props) {
         return null
       }
 
-
-      //Add items
       const additems = e =>{
           e.preventDefault()
           if (currentItem.text !==''){
-            //   const items = [...totalitems,newItem]
-            //   window.localStorage.setItem('Item',JSON.stringify(items))
-            //   setTotalItems(items)
-            //   setCurrentItem({
-            //       text: '',
-            //       key:''
-            //   })
             db.collection("marklist").add({
                 Task: currentItem.text,
                 Key: currentItem.key,
@@ -98,10 +63,13 @@ function MapContent(props) {
             .catch((e)=>{
                 console.error("Error while sending",e)
             })
+            setCurrentItem({
+                      text: '',
+                      key:''
+                  })
               
             showmarker()
           }
-        //   storelocalstorage()
       }
 
       //Handing the Input and the marker
@@ -110,11 +78,6 @@ function MapContent(props) {
           .addTo(map)
           setShow(false)
       }
-
-      //Storing into local storage
-    //   const storelocalstorage = ()=>{
-          
-    //   }
 
 
       //Handling the Time output
