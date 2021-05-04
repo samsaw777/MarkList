@@ -1,20 +1,36 @@
 import React,{useState,useEffect} from 'react'
- 
+ import {db} from '../../Firebase'
 
 
-function Inputmap() {
-    var a = []
-    a = JSON.parse(window.localStorage.getItem('Item'))
+function Inputmap({change}) {
+    const [getItems, setGetItems] = useState([])
+
+    useEffect(() =>{
+        let getItems  = []
+        db.collection('marklist').get()
+        .then(snapshot =>{
+            snapshot.forEach(item =>{
+                let itemID = item.id
+                let itemobj = {...item.data(),['id']: itemID}
+                getItems.push(itemobj)
+            })
+            setGetItems(getItems)
+        })
+    },[change])
+
+
     return (
         <div>
-            {
-                a?a.map(item=>(
-                    <div className="taskmaindiv" key={item.key}>
-                    <p>{item.text}</p>
-                    <p>{item.time}</p>
-                    </div>
-                    )):<div></div>
-            }
+           {
+               getItems.length > 0?
+               getItems.map(item =>(
+                   <div key={item.id}>
+                       <p>{item.Task}</p>
+                       <p>{item.Time}</p>
+                   </div>
+               )):
+               <div></div>
+           }
         </div>
     )
 }

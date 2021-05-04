@@ -28,6 +28,7 @@ function MapContent(props) {
     const [long,setLong] = useState('')
     const [time,setTime] = useState(new Date())
     console.log(time)
+    const [change, setChange] = useState(true)
     const [currentItem, setCurrentItem] = useState({
         text: '',
         key:''
@@ -67,6 +68,7 @@ function MapContent(props) {
                       text: '',
                       key:''
                   })
+                  setChange(!change)
               
             showmarker()
           }
@@ -145,7 +147,7 @@ function MapContent(props) {
                 {
                     show?Inputform():<div></div>
                 }
-                <ShowInput />
+                <ShowInput change={change}/>
             </div>
 
         </div>
