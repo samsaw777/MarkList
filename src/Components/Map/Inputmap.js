@@ -9,9 +9,9 @@ function Inputmap() {
         <div>
             {
                 a?a.map(item=>(
-                    <div>
+                    <div className="taskmaindiv" key={item.key}>
                     <p>{item.text}</p>
-                    <p>{item.key}</p>
+                    <p>{item.time}</p>
                     </div>
                     )):<div></div>
             }

@@ -39,9 +39,9 @@ function MapContent(props) {
     console.log(currentItem)
     // console.log(click)
     let map;
-    var localstorage = window.localStorage
-    var i  = window.localStorage.getItem('Item')
-    console.log(i)
+    // var localstorage = window.localStorage
+    // var i  = window.localStorage.getItem('Item')
+    // console.log(i)
     // useEffect(() =>{
     //     allstorage()
     // },[])
@@ -74,7 +74,7 @@ function MapContent(props) {
       //Add items
       const additems = e =>{
           e.preventDefault()
-          const newItem = {...currentItem,time:time,coordinates:[lat,long]}
+          const newItem = {...currentItem,time:time.getTime(),coordinates:[lat,long]}
           if (newItem.text !==''){
               const items = [...totalitems,newItem]
               window.localStorage.setItem('Item',JSON.stringify(items))
@@ -103,6 +103,7 @@ function MapContent(props) {
 
       //Handling the Time output
       const handleTime = e =>{
+          console.log(e)
           setTime(e)
       }
 
@@ -165,7 +166,7 @@ function MapContent(props) {
                 {
                     show?Inputform():<div></div>
                 }
-                <ShowInput i={i}/>
+                <ShowInput />
             </div>
 
         </div>
