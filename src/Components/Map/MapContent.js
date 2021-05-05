@@ -70,12 +70,12 @@ function MapContent(props) {
                   })
                   setChange(!change)
               
-            showmarker()
+            showmarker(lat,long)
           }
       }
 
       //Handing the Input and the marker
-      const showmarker = ()=>{
+      const showmarker = (lat,long)=>{
           L.marker([lat,long])
           .addTo(map)
           setShow(false)
