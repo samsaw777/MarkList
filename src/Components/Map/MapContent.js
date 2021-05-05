@@ -145,7 +145,7 @@ function MapContent(props) {
             <div className='Inputcontainer'>
                 <p className='Inputcontainerheading'>Click on the Map to add to do list.</p>
                 {
-                    show?Inputform():<div></div>
+                    show?<div className='Inputform'>{Inputform()}</div>:<div></div>
                 }
                 <ShowInput change={change}/>
             </div>
