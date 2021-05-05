@@ -13,3 +13,28 @@
     
 }
 
+.taskdiv{
+    width: 100%;
+    display: flex;
+}
+
+.completed{
+    margin-right: 15px;
+}
+.completed > i{
+    color: #00FF00;
+    cursor: pointer;
+    padding: 1px;
+    font-size: 20px;
+}
+
+.text-danger>i{
+    cursor: pointer;
+}
+
+.itemtask{
+    width: 80%;
+}
+
+
+
