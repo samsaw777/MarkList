@@ -4,6 +4,9 @@ import '../CSS/output.css'
 
 function Inputmap({change}) {
     const [getItems, setGetItems] = useState([])
+    console.log(getItems)
+    const {latitude,longitude} = getItems
+    console.log(latitude,longitude)
     const [fetch, setFetch] = useState(true)
     useEffect(() =>{
         let getItems  = []
@@ -16,6 +19,7 @@ function Inputmap({change}) {
             })
             setGetItems(getItems)
         })
+        iterate()
     },[change,fetch])
 
     const deleteitems = id =>{
@@ -27,6 +31,12 @@ function Inputmap({change}) {
         })
         .catch(error =>{
             console.log(error)
+        })
+    }
+
+    const iterate = ()=>{
+        getItems.forEach(item=>{
+            console.log(item.Latitude,item.Longitude)
         })
     }
     return (
