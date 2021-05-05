@@ -4,7 +4,7 @@ import '../CSS/output.css'
 
 function Inputmap({change}) {
     const [getItems, setGetItems] = useState([])
-
+    const [fetch, setFetch] = useState(true)
     useEffect(() =>{
         let getItems  = []
         db.collection('marklist').get()
@@ -16,9 +16,19 @@ function Inputmap({change}) {
             })
             setGetItems(getItems)
         })
-    },[change])
+    },[change,fetch])
 
-
+    const deleteitems = id =>{
+        setFetch(!fetch)
+        const userID = id
+        db.collection('marklist').doc(`${userID}`).delete()
+        .then(() =>{
+            console.log('Item deleted successfully!')
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+    }
     return (
         <div className="inputmain">
            {
@@ -26,7 +36,17 @@ function Inputmap({change}) {
                getItems.map(item =>(
                    <div key={item.id} className='itemoutput'>
                        <p>{item.Time}</p>
-                       <p>{item.Task}</p>
+                       <div className='taskdiv'>
+                            <p className='itemtask'>{item.Task}</p>
+                            <p className='itemaction'>
+                                <a className='completed'>
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </a>
+                                <a className="text-danger" onClick={e => {deleteitems(item.id)}}>
+                                    <i className="far fa-trash-alt"></i>
+                                </a>
+                            </p>
+                        </div>
                    </div>
                )):
                <div></div>
