@@ -5,7 +5,7 @@ import '../CSS/output.css'
 function Inputmap({change}) {
     const [getItems, setGetItems] = useState([])
     console.log(getItems)
-    const [getcor, setGetCor] = useState([])
+    const [getcor, setGetCor] = useState()
     console.log(getcor)
     // const {latitude,longitude} = getItems
     // console.log(latitude,longitude)
@@ -23,7 +23,9 @@ function Inputmap({change}) {
         })
         iterate()
     },[change,fetch])
+    // useEffect(()=>{
 
+    // },[])
     const deleteitems = id =>{
         setFetch(!fetch)
         const userID = id
@@ -48,6 +50,7 @@ function Inputmap({change}) {
             coordinates.push(add)
         })
         console.log(coordinates)
+        setGetCor(coordinates)
     }
     return (
         <div className="inputmain">
