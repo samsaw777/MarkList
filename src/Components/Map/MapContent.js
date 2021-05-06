@@ -147,7 +147,7 @@ function MapContent(props) {
                 {
                     show?<div className='Inputform'>{Inputform()}</div>:<div></div>
                 }
-                <ShowInput change={change}/>
+                <ShowInput change={change} showmarker={showmarker}/>
             </div>
 
         </div>
