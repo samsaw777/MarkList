@@ -113,19 +113,7 @@ function MapContent(props) {
       },[])
 
       //Load when change value changes every time.
-      useEffect(() =>{
-        let getItems  = []
-        db.collection('marklist').get()
-        .then(snapshot =>{
-            snapshot.forEach(item =>{
-                let itemID = item.id
-                let itemobj = {...item.data(),['id']: itemID}
-                getItems.push(itemobj)
-            })
-            setGetItems(getItems)
-        })
 
-      },[change])
 
       //Get the coordinates from the firebase
     //   const iterate = ()=>{
