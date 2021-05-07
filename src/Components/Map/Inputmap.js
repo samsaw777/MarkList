@@ -26,6 +26,22 @@ function Inputmap({getItems}) {
     // useEffect(()=>{
 
     // },[])
+
+    // useEffect(() =>{
+    //     var add = {
+    //         lat: '',
+    //         long: '',
+    //     }
+    //     var coordinates = []
+    //     getItems.forEach(item=>{
+    //         add.lat = item.Latitude
+    //         add.long = item.Longitude
+    //         coordinates.push(add)
+    //     })
+    //     console.log(coordinates)
+    //     setGetCor(coordinates)
+    // },[])
+
     const deleteitems = id =>{
         setFetch(!fetch)
         const userID = id
