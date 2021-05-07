@@ -6,10 +6,7 @@ function Inputmap({change,showmarker}) {
     const [getItems, setGetItems] = useState([])
     console.log(getItems)
     const [inarray,setInarray] = useState(true)
-    // const [getcor, setGetCor] = useState()
-    // console.log(getcor)
-    // const {latitude,longitude} = getItems
-    // console.log(latitude,longitude)
+
     const [fetch, setFetch] = useState(true)
 
     useEffect(()=>{
@@ -29,43 +26,7 @@ function Inputmap({change,showmarker}) {
         setInarray(!inarray)
 
     },[change,fetch])
-    // useEffect(()=>{
-
-    // },[])
-
-    // useEffect(() =>{
-    //     var add = {
-    //         lat: '',
-    //         long: '',
-    //     }
-    //     var coordinates = []
-    //     getItems.forEach(item=>{
-    //         add.lat = item.Latitude
-    //         add.long = item.Longitude
-    //         coordinates.push(add)
-    //     })
-    //     console.log(coordinates)
-    //     setGetCor(coordinates)
-    // },[])
-
-    // useEffect(() =>{
-    //     iterate()
-    // },[inarray])
-    // const iterate = ()=>{
-    //     var add = {
-    //         lat: '',
-    //         long: '',
-    //     }
-    //     var coordinates = []
-    //     getItems.forEach(item=>{
-    //         add.lat = item.Latitude
-    //         add.long = item.Longitude
-    //         coordinates.push(add)
-    //     })
-    //     console.log(coordinates)
-    //     setGetCor(coordinates)
-    // }
-
+   
     const displaycor = ()=>{
         getItems.forEach(item =>{
             console.log(item.Latitude)
