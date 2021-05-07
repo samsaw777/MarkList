@@ -34,8 +34,8 @@ function MapContent(props) {
         key:''
     })
     console.log(currentItem)
-    const [getItems, setGetItems] = useState([])
-    console.log(getItems)
+    // const [getItems, setGetItems] = useState([])
+    // console.log(getItems)
     // const [getcor, setGetCor] = useState()
     // console.log(getcor)
     let map;
@@ -82,10 +82,6 @@ function MapContent(props) {
                       key:''
                   })
                   setChange(!change)
-            // coordinates.lat = lat
-            // coordinates.long = long
-            // allcord.push(coordinates)
-            // setGetCor(allcord)
             showmarker(lat,long)
           }
       }
@@ -105,47 +101,22 @@ function MapContent(props) {
       }
 
 
-      //Fetch the data from firebaseapp
-      useEffect(() =>{
-        let getItems  = []
-        db.collection('marklist').get()
-        .then(snapshot =>{
-            snapshot.forEach(item =>{
-                let itemID = item.id
-                let itemobj = {...item.data(),['id']: itemID}
-                getItems.push(itemobj)
-            })
-            setGetItems(getItems)
-        })
-        // iterate()
-        displaycor()
-      },[])
-
-      //Load when change value changes every time.
-
-const displaycor = ()=>{
-    getItems.forEach(item =>{
-        console.log(item.Latitude)
-       const lat = item.Latitude
-       const long = item.Longitude
-        showmarker(lat,long)
-    })
-}
-      //Get the coordinates from the firebase
-    //   const iterate = ()=>{
-    //     var add = {
-    //         lat: '',
-    //         long: '',
-    //     }
-    //     var coordinates = []
-    //     getItems.forEach(item=>{
-    //         add.lat = item.Latitude
-    //         add.long = item.Longitude
-    //         coordinates.push(add)
+    //   //Fetch the data from firebaseapp
+    //   useEffect(() =>{
+    //     let getItems  = []
+    //     db.collection('marklist').get()
+    //     .then(snapshot =>{
+    //         snapshot.forEach(item =>{
+    //             let itemID = item.id
+    //             let itemobj = {...item.data(),['id']: itemID}
+    //             getItems.push(itemobj)
+    //         })
+    //         setGetItems(getItems)
     //     })
-    //     console.log(coordinates)
-    //     setGetCor(coordinates)
-    // }
+    //     // iterate()
+    //     displaycor()
+    //   },[])
+
 
 
       //Input Component
