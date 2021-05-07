@@ -2,14 +2,19 @@ import React,{useState,useEffect} from 'react'
  import {db} from '../../Firebase'
 import '../CSS/output.css'
 
-function Inputmap({change}) {
+function Inputmap({change,showmarker}) {
     const [getItems, setGetItems] = useState([])
     console.log(getItems)
+    const [inarray,setInarray] = useState(true)
     // const [getcor, setGetCor] = useState()
     // console.log(getcor)
     // const {latitude,longitude} = getItems
     // console.log(latitude,longitude)
     const [fetch, setFetch] = useState(true)
+
+    useEffect(()=>{
+        displaycor()
+    })
     useEffect(() =>{
         let getItems  = []
         db.collection('marklist').get()
@@ -21,7 +26,8 @@ function Inputmap({change}) {
             })
             setGetItems(getItems)
         })
-        // iterate()
+        setInarray(!inarray)
+
     },[change,fetch])
     // useEffect(()=>{
 
@@ -42,6 +48,32 @@ function Inputmap({change}) {
     //     setGetCor(coordinates)
     // },[])
 
+    // useEffect(() =>{
+    //     iterate()
+    // },[inarray])
+    // const iterate = ()=>{
+    //     var add = {
+    //         lat: '',
+    //         long: '',
+    //     }
+    //     var coordinates = []
+    //     getItems.forEach(item=>{
+    //         add.lat = item.Latitude
+    //         add.long = item.Longitude
+    //         coordinates.push(add)
+    //     })
+    //     console.log(coordinates)
+    //     setGetCor(coordinates)
+    // }
+
+    const displaycor = ()=>{
+        getItems.forEach(item =>{
+            console.log(item.Latitude)
+           const lat = item.Latitude
+           const long = item.Longitude
+            showmarker(lat,long)
+        })
+    }
     const deleteitems = id =>{
         setFetch(!fetch)
         const userID = id
