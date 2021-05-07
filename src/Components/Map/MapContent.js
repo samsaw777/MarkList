@@ -36,8 +36,8 @@ function MapContent(props) {
     console.log(currentItem)
     const [getItems, setGetItems] = useState([])
     console.log(getItems)
-    const [getcor, setGetCor] = useState()
-    console.log(getcor)
+    // const [getcor, setGetCor] = useState()
+    // console.log(getcor)
     let map;
 
 
@@ -124,24 +124,24 @@ function MapContent(props) {
             })
             setGetItems(getItems)
         })
-        iterate()
+
       },[change])
 
       //Get the coordinates from the firebase
-      const iterate = ()=>{
-        var add = {
-            lat: '',
-            long: '',
-        }
-        var coordinates = []
-        getItems.forEach(item=>{
-            add.lat = item.Latitude
-            add.long = item.Longitude
-            coordinates.push(add)
-        })
-        console.log(coordinates)
-        setGetCor(coordinates)
-    }
+    //   const iterate = ()=>{
+    //     var add = {
+    //         lat: '',
+    //         long: '',
+    //     }
+    //     var coordinates = []
+    //     getItems.forEach(item=>{
+    //         add.lat = item.Latitude
+    //         add.long = item.Longitude
+    //         coordinates.push(add)
+    //     })
+    //     console.log(coordinates)
+    //     setGetCor(coordinates)
+    // }
 
 
       //Input Component
