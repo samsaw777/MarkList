@@ -6,12 +6,17 @@ function Inputmap({change,showmarker}) {
     const [getItems, setGetItems] = useState([])
     console.log(getItems)
     const [inarray,setInarray] = useState(true)
-
+    const [deletei,setDelete] = useState(false)
     const [fetch, setFetch] = useState(true)
 
-    useEffect(()=>{
-        displaycor()
-    })
+    // useEffect(()=>{
+    //     displaycor()
+    // },[])
+
+    // useEffect(()=>{
+    //     displaycor()
+    // },[deletei])
+
     useEffect(() =>{
         let getItems  = []
         db.collection('marklist').get()
@@ -45,6 +50,7 @@ function Inputmap({change,showmarker}) {
         .catch(error =>{
             console.log(error)
         })
+        setDelete(!deletei)
     }
 
 
