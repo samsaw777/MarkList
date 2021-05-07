@@ -1,4 +1,4 @@
-import React,{useState}  from 'react'
+import React,{useState,useEffect}  from 'react'
 import { MapContainer, TileLayer, useMap} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
@@ -34,7 +34,15 @@ function MapContent(props) {
         key:''
     })
     console.log(currentItem)
+    const [getItems, setGetItems] = useState([])
+    console.log(getItems)
+    const [getcor, setGetCor] = useState()
+    console.log(getcor)
     let map;
+
+
+
+    //Show the map
     function Showmap({ coordinates }) {
         map = useMap();
         map.setView(coordinates, map.getZoom());
@@ -89,6 +97,51 @@ function MapContent(props) {
       }
 
 
+      //Fetch the data from firebaseapp
+      useEffect(() =>{
+        let getItems  = []
+        db.collection('marklist').get()
+        .then(snapshot =>{
+            snapshot.forEach(item =>{
+                let itemID = item.id
+                let itemobj = {...item.data(),['id']: itemID}
+                getItems.push(itemobj)
+            })
+            setGetItems(getItems)
+        })
+        // iterate()
+      },[])
+
+      //Load when change value changes every time.
+      useEffect(() =>{
+        let getItems  = []
+        db.collection('marklist').get()
+        .then(snapshot =>{
+            snapshot.forEach(item =>{
+                let itemID = item.id
+                let itemobj = {...item.data(),['id']: itemID}
+                getItems.push(itemobj)
+            })
+            setGetItems(getItems)
+        })
+        iterate()
+      },[change])
+
+      //Get the coordinates from the firebase
+      const iterate = ()=>{
+        var add = {
+            lat: '',
+            long: '',
+        }
+        var coordinates = []
+        getItems.forEach(item=>{
+            add.lat = item.Latitude
+            add.long = item.Longitude
+            coordinates.push(add)
+        })
+        console.log(coordinates)
+        setGetCor(coordinates)
+    }
 
 
       //Input Component
@@ -147,7 +200,7 @@ function MapContent(props) {
                 {
                     show?<div className='Inputform'>{Inputform()}</div>:<div></div>
                 }
-                <ShowInput change={change} showmarker={showmarker}/>
+                <ShowInput change={change} showmarker={showmarker} getItems={getItems}/>
             </div>
 
         </div>
