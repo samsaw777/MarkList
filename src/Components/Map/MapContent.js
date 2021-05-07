@@ -34,10 +34,7 @@ function MapContent(props) {
         key:''
     })
     console.log(currentItem)
-    // const [getItems, setGetItems] = useState([])
-    // console.log(getItems)
-    // const [getcor, setGetCor] = useState()
-    // console.log(getcor)
+
     let map;
 
 
@@ -101,21 +98,7 @@ function MapContent(props) {
       }
 
 
-    //   //Fetch the data from firebaseapp
-    //   useEffect(() =>{
-    //     let getItems  = []
-    //     db.collection('marklist').get()
-    //     .then(snapshot =>{
-    //         snapshot.forEach(item =>{
-    //             let itemID = item.id
-    //             let itemobj = {...item.data(),['id']: itemID}
-    //             getItems.push(itemobj)
-    //         })
-    //         setGetItems(getItems)
-    //     })
-    //     // iterate()
-    //     displaycor()
-    //   },[])
+
 
 
 
@@ -175,7 +158,7 @@ function MapContent(props) {
                 {
                     show?<div className='Inputform'>{Inputform()}</div>:<div></div>
                 }
-                <ShowInput change={change} showmarker={showmarker} getItems={getItems}/>
+                <ShowInput change={change} showmarker={showmarker}/>
             </div>
 
         </div>
