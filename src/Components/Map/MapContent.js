@@ -58,6 +58,11 @@ function MapContent(props) {
 
       const additems = e =>{
           e.preventDefault()
+          var coordinates = {
+              lat: '',
+              long:''
+          }
+          const allcord = []
           if (currentItem.text !==''){
             db.collection("marklist").add({
                 Task: currentItem.text,
@@ -77,7 +82,10 @@ function MapContent(props) {
                       key:''
                   })
                   setChange(!change)
-              
+            // coordinates.lat = lat
+            // coordinates.long = long
+            // allcord.push(coordinates)
+            // setGetCor(allcord)
             showmarker(lat,long)
           }
       }
@@ -110,11 +118,19 @@ function MapContent(props) {
             setGetItems(getItems)
         })
         // iterate()
+        displaycor()
       },[])
 
       //Load when change value changes every time.
 
-
+const displaycor = ()=>{
+    getItems.forEach(item =>{
+        console.log(item.Latitude)
+       const lat = item.Latitude
+       const long = item.Longitude
+        showmarker(lat,long)
+    })
+}
       //Get the coordinates from the firebase
     //   const iterate = ()=>{
     //     var add = {
