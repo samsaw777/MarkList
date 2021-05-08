@@ -23,6 +23,8 @@ function MapContent(props) {
     const coordinates = [
          props.coordinate.latitude, props.coordinate.longitude
     ]
+    const loading = props.loading
+    console.log(loading)
     const [show,setShow] = useState(false)
     const[lat,setLat] = useState('')
     const [long,setLong] = useState('')
@@ -34,7 +36,10 @@ function MapContent(props) {
         key:''
     })
     console.log(currentItem)
-
+    // const [getItems, setGetItems] = useState([])
+    // console.log(getItems)
+    // const [loading, setLoading] = useState(false)
+    // console.log(loading)
     let map;
 
 
@@ -42,16 +47,50 @@ function MapContent(props) {
     //Show the map
     function Showmap({ coordinates }) {
         map = useMap();
+        // map.on('load',()=>{
+        //     setLoading(!loading)
+        // })
         map.setView(coordinates, map.getZoom());
+
         map.on('click',(e)=>{
             const {lat, lng} = e.latlng
             setShow(true)
             setLong(lng)
+            // setLoading(!loading)
             setLat(lat)
         })
 
         return null
       }
+
+    //   const loadit = ()=>{
+    //       setLoading(!loading)
+    //   }
+      //Showing the markers
+    //   useEffect(()=>{
+    //     loadit()
+    //   },[])
+    //   useEffect(() =>{
+    //     let getItems  = []
+    //     db.collection('marklist').get()
+    //     .then(snapshot =>{
+    //         snapshot.forEach(item =>{
+    //             let itemID = item.id
+    //             let itemobj = {...item.data(),['id']: itemID}
+    //             getItems.push(itemobj)
+    //         })
+    //         setGetItems(getItems)
+    //     })
+    // },[])
+
+    // useEffect(()=>{
+    //     getItems.forEach(item =>{
+    //         console.log(item.Latitude)
+    //        const lat = item.Latitude
+    //        const long = item.Longitude
+    //         showmarker(lat,long)
+    //     })
+    // },[])
 
       const additems = e =>{
           e.preventDefault()
@@ -143,7 +182,7 @@ function MapContent(props) {
     return (
         <div className='MainMapContainer'>
             <div className='Mapcontainer'>
-                <MapContainer className="MapContainer" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+                <MapContainer className="MapContainer" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} id="map">
                     
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -158,7 +197,7 @@ function MapContent(props) {
                 {
                     show?<div className='Inputform'>{Inputform()}</div>:<div></div>
                 }
-                <ShowInput change={change} showmarker={showmarker}/>
+                <ShowInput change={change} showmarker={showmarker} loading={loading}/>
             </div>
 
         </div>
