@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Mark from './MapContent'
 function Markme() {
     const [coordinate,setCoordinate] = useState({longitude: "",latitude: ""})
-
+    const [loading, setLoading] = useState(false)
     useEffect(()=>{
         if("geolocation" in navigator){
             navigator.geolocation.getCurrentPosition(position =>{
@@ -11,6 +11,7 @@ function Markme() {
                     longitude: position.coords.longitude,
                     latitude: position.coords.latitude
                 })
+                setLoading(true)
             })
         }else{
             console.log("false")
@@ -20,7 +21,7 @@ function Markme() {
     return (
         <div>
             {/* C */}
-            <Mark coordinate={coordinate}/>
+            <Mark coordinate={coordinate} loading={loading}/>
         </div>
     )
 }
