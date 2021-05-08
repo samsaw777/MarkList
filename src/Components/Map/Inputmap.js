@@ -2,16 +2,14 @@ import React,{useState,useEffect} from 'react'
  import {db} from '../../Firebase'
 import '../CSS/output.css'
 
-function Inputmap({change,showmarker}) {
+function Inputmap({change,showmarker,loading}) {
     const [getItems, setGetItems] = useState([])
     console.log(getItems)
     const [inarray,setInarray] = useState(true)
     const [deletei,setDelete] = useState(false)
     const [fetch, setFetch] = useState(true)
 
-    // useEffect(()=>{
-    //     displaycor()
-    // },[])
+    
 
     // useEffect(()=>{
     //     displaycor()
@@ -29,6 +27,7 @@ function Inputmap({change,showmarker}) {
             setGetItems(getItems)
         })
         setInarray(!inarray)
+        displaycor()
 
     },[change,fetch])
    
