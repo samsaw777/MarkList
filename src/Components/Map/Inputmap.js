@@ -10,10 +10,11 @@ function Inputmap({change,showmarker,loading}) {
     const [fetch, setFetch] = useState(true)
 
     
+    useEffect(()=>{
+        displaycor()
+    },[loading,deletei])
 
-    // useEffect(()=>{
-    //     displaycor()
-    // },[deletei])
+
 
     useEffect(() =>{
         let getItems  = []
@@ -27,7 +28,7 @@ function Inputmap({change,showmarker,loading}) {
             setGetItems(getItems)
         })
         setInarray(!inarray)
-        displaycor()
+
 
     },[change,fetch])
    
