@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
  import {db} from '../../Firebase'
 import '../CSS/output.css'
 
-function Inputmap({change,showmarker,loading}) {
+function Inputmap({change,showmarker,loading,getcord}) {
     const [getItems, setGetItems] = useState([])
     console.log(getItems)
     const [inarray,setInarray] = useState(true)
@@ -10,10 +10,14 @@ function Inputmap({change,showmarker,loading}) {
     const [fetch, setFetch] = useState(true)
 
     
-    useEffect(()=>{
-        displaycor()
-    },[loading,deletei])
-
+    // useEffect(()=>{
+    //     displaycor()
+    // },[loading,deletei])
+    // useEffect(()=>{
+    //     getcord.forEach(item =>{
+    //         showmarker(item.Latitude,item.Longitude)
+    //     })
+    // },[])
 
 
     useEffect(() =>{
@@ -28,7 +32,9 @@ function Inputmap({change,showmarker,loading}) {
             setGetItems(getItems)
         })
         setInarray(!inarray)
-
+        // getcord.forEach(item =>{
+        //     showmarker(item.Latitude,item.Longitude)
+        // })
 
     },[change,fetch])
    

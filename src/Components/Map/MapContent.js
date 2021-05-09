@@ -23,6 +23,9 @@ function MapContent(props) {
     const coordinates = [
          props.coordinate.latitude, props.coordinate.longitude
     ]
+
+    // const {Latitude,Longitude} = props.getcord
+    console.log(props.getcord)
     const [show,setShow] = useState(false)
     const[lat,setLat] = useState('')
     const [long,setLong] = useState('')
@@ -34,22 +37,33 @@ function MapContent(props) {
         key:''
     })
     console.log(currentItem)
-    // const [getItems, setGetItems] = useState([])
-    // console.log(getItems)
+    const [getItems, setGetItems] = useState([...props.getcord])
+    console.log(getItems)
     const [loading, setLoading] = useState(false)
     console.log(loading)
+    const [getcord,setGetCord] = useState([])
+    console.log(getcord)
     let map;
 
 
+    const one = L.marker([19.227528395823438,73.09152603149415])
+    const two = L.marker([19.2301217482413,73.12414169311525])
 
+    // useEffect(()=>{
+    //     // const lat = 19.2301217482413
+    //     // const long = 73.12414169311525
+
+        
+    // },[])
     //Show the map
     function Showmap({ coordinates }) {
         map = useMap();
-        map.on('load',()=>{
-            console.log("Hello map loaded!");
-        })
-        map.setView(coordinates, map.getZoom());
 
+        map.setView(coordinates, map.getZoom());
+        // map.on('layeradd',()=>{
+        //     console.log("Hello map loaded!");
+        //     L.layerGroup([one]).addTo(map)
+        // })
         map.on('click',(e)=>{
             const {lat, lng} = e.latlng
             setShow(true)
@@ -80,14 +94,6 @@ function MapContent(props) {
     //     })
     // },[])
 
-    // useEffect(()=>{
-    //     getItems.forEach(item =>{
-    //         console.log(item.Latitude)
-    //        const lat = item.Latitude
-    //        const long = item.Longitude
-    //         showmarker(lat,long)
-    //     })
-    // },[])
 
       const additems = e =>{
           e.preventDefault()
@@ -101,6 +107,16 @@ function MapContent(props) {
                 Task: currentItem.text,
                 Key: currentItem.key,
                 Time: time.toLocaleString(),
+                Latitude: lat,
+                Longitude: long
+            })
+            .then(()=>{
+                console.log("Documents added sucessfully")
+            })
+            .catch((e)=>{
+                console.error("Error while sending",e)
+            })
+            db.collection("marklistcor").add({
                 Latitude: lat,
                 Longitude: long
             })
@@ -125,6 +141,7 @@ function MapContent(props) {
           .addTo(map)
           setShow(false)
       }
+
 
 
       //Handling the Time output
@@ -194,7 +211,7 @@ function MapContent(props) {
                 {
                     show?<div className='Inputform'>{Inputform()}</div>:<div></div>
                 }
-                <ShowInput change={change} showmarker={showmarker} loading={loading}/>
+                <ShowInput change={change} showmarker={showmarker} loading={loading} getcord={getcord}/>
             </div>
 
         </div>
