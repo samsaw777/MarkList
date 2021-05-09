@@ -23,8 +23,6 @@ function MapContent(props) {
     const coordinates = [
          props.coordinate.latitude, props.coordinate.longitude
     ]
-    const loading = props.loading
-    console.log(loading)
     const [show,setShow] = useState(false)
     const[lat,setLat] = useState('')
     const [long,setLong] = useState('')
@@ -38,8 +36,8 @@ function MapContent(props) {
     console.log(currentItem)
     // const [getItems, setGetItems] = useState([])
     // console.log(getItems)
-    // const [loading, setLoading] = useState(false)
-    // console.log(loading)
+    const [loading, setLoading] = useState(false)
+    console.log(loading)
     let map;
 
 
@@ -47,25 +45,24 @@ function MapContent(props) {
     //Show the map
     function Showmap({ coordinates }) {
         map = useMap();
-        // map.on('load',()=>{
-        //     setLoading(!loading)
-        // })
+        map.on('load',()=>{
+            console.log("Hello map loaded!");
+        })
         map.setView(coordinates, map.getZoom());
 
         map.on('click',(e)=>{
             const {lat, lng} = e.latlng
             setShow(true)
             setLong(lng)
-            // setLoading(!loading)
+            setLoading(!loading)
             setLat(lat)
         })
+
 
         return null
       }
 
-    //   const loadit = ()=>{
-    //       setLoading(!loading)
-    //   }
+
       //Showing the markers
     //   useEffect(()=>{
     //     loadit()
