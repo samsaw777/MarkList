@@ -1,7 +1,7 @@
 import React,{useState,useEffect}  from 'react'
 import { MapContainer, TileLayer, useMap} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
+import L, { Marker } from 'leaflet'
 import '../CSS/Input.css'  
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -10,6 +10,7 @@ import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, KeyboardTimePicker} from '@material-ui/pickers'
 import ShowInput from './Inputmap'
 import {db} from '../../Firebase'
+import { getTime } from 'date-fns'
 
 console.log(db)
 let DefaultIcon = L.icon({
@@ -49,12 +50,12 @@ function MapContent(props) {
     const one = L.marker([19.227528395823438,73.09152603149415])
     const two = L.marker([19.2301217482413,73.12414169311525])
 
-    // useEffect(()=>{
-    //     // const lat = 19.2301217482413
-    //     // const long = 73.12414169311525
+    useEffect(()=>{
+        // const lat = 19.2301217482413
+        // const long = 73.12414169311525
+        // L.layerGroup([one, two]).addTo(map)
 
-        
-    // },[])
+    },[])
     //Show the map
     function Showmap({ coordinates }) {
         map = useMap();
@@ -64,6 +65,9 @@ function MapContent(props) {
         //     console.log("Hello map loaded!");
         //     L.layerGroup([one]).addTo(map)
         // })
+        map.on('load',()=>{
+         
+        })
         map.on('click',(e)=>{
             const {lat, lng} = e.latlng
             setShow(true)
@@ -202,7 +206,7 @@ function MapContent(props) {
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-
+                    
                     <Showmap coordinates={coordinates} />
                 </MapContainer>
             </div>
