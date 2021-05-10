@@ -110,7 +110,7 @@ function MapContent(props) {
             db.collection("marklist").add({
                 Task: currentItem.text,
                 Key: currentItem.key,
-                Time: time.toLocaleString(),
+                Time: time.toLocaleTimeString('it-IT'),
                 Latitude: lat,
                 Longitude: long
             })
