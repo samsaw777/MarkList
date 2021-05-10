@@ -66,9 +66,9 @@ function Inputmap({change,showmarker,loading,getcord}) {
         db.collection('marklist').doc(`${userID}`).get()
         .then(snapshot =>{
             // setSelectedItem(snapshot.data())
-            const {Time} = snapshot.data()
-            console.log(Time)
-            if (Time > date.toLocaleTimeString()){
+            const {TimeCompare} = snapshot.data()
+            console.log(TimeCompare)
+            if (TimeCompare > date.getTime()){
                 setSelectedItem(true)
             }
             else{
@@ -83,7 +83,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
            {
                getItems.length > 0?
                getItems.map(item =>(
-                   <div key={item.id} className='itemoutput'>
+                   <div key={item.id} className={selectedItem ? 'completedtask':'itemoutput'}>
                        <p>{item.Time}</p>
                        <div className='taskdiv'>
                             <p className='itemtask'>{item.Task}</p>
