@@ -111,6 +111,7 @@ function MapContent(props) {
                 Task: currentItem.text,
                 Key: currentItem.key,
                 Time: time.toLocaleTimeString('it-IT'),
+                TimeCompare: time.getTime(),
                 Latitude: lat,
                 Longitude: long
             })
