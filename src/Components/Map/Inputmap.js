@@ -12,6 +12,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
     console.log(selectedItem)
     const date = new Date()
     console.log(date.toLocaleTimeString('it-IT'))
+    const [itemi,setItemI] = useState()
     // useEffect(()=>{
     //     displaycor()
     // },[loading,deletei])
@@ -63,6 +64,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
 
     const completeTask = id =>{
         const userID = id
+        setItemI(userID)
         db.collection('marklist').doc(`${userID}`).get()
         .then(snapshot =>{
             // setSelectedItem(snapshot.data())
@@ -83,7 +85,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
            {
                getItems.length > 0?
                getItems.map(item =>(
-                   <div key={item.id} className={selectedItem ? 'completedtask':'itemoutput'}>
+                   <div key={item.id} className={selectedItem && item.id === itemi ? 'completedtask':'itemoutput'}>
                        <p>{item.Time}</p>
                        <div className='taskdiv'>
                             <p className='itemtask'>{item.Task}</p>
