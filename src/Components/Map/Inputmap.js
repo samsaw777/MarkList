@@ -8,8 +8,10 @@ function Inputmap({change,showmarker,loading,getcord}) {
     const [inarray,setInarray] = useState(true)
     const [deletei,setDelete] = useState(false)
     const [fetch, setFetch] = useState(true)
-
-    
+    const [selectedItem,setSelectedItem] = useState()
+    console.log(selectedItem)
+    const date = new Date()
+    console.log(date.toLocaleTimeString('it-IT'))
     // useEffect(()=>{
     //     displaycor()
     // },[loading,deletei])
@@ -59,6 +61,22 @@ function Inputmap({change,showmarker,loading,getcord}) {
         setDelete(!deletei)
     }
 
+    const completeTask = id =>{
+        const userID = id
+        db.collection('marklist').doc(`${userID}`).get()
+        .then(snapshot =>{
+            // setSelectedItem(snapshot.data())
+            const {Time} = snapshot.data()
+            console.log(Time)
+            if (Time > date.toLocaleTimeString()){
+                setSelectedItem(true)
+            }
+            else{
+                setSelectedItem(false)
+            }
+        })
+    }
+
 
     return (
         <div className="inputmain">
@@ -70,7 +88,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
                        <div className='taskdiv'>
                             <p className='itemtask'>{item.Task}</p>
                             <p className='itemaction'>
-                                <a className='completed'>
+                                <a className='completed' onClick={e => completeTask(item.id)}>
                                     <i class="fa fa-check" aria-hidden="true"></i>
                                 </a>
                                 <a className="text-danger" onClick={e => {deleteitems(item.id)}}>
