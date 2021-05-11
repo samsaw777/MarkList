@@ -76,7 +76,6 @@ function Inputmap({change,showmarker,loading,getcord}) {
                 db.collection('marklist').doc(`${userID}`).delete()
                 .then(()=>{
                     setDelete(!deletei)
-                    setFetch(true)
                 })
                 .catch(error=>{
                     console.log(error)
@@ -91,7 +90,6 @@ function Inputmap({change,showmarker,loading,getcord}) {
 
     return (
         <div className="inputmain">
-            <div>{fetch?<p>Task Complete</p>:<p></p>}</div>
            {
                getItems.length > 0?
                getItems.map(item =>(
