@@ -7,7 +7,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
     console.log(getItems)
     const [inarray,setInarray] = useState(true)
     const [deletei,setDelete] = useState(false)
-    const [fetch, setFetch] = useState(true)
+    const [fetch, setFetch] = useState(false)
     const [selectedItem,setSelectedItem] = useState()
     console.log(selectedItem)
     const date = new Date()
@@ -39,7 +39,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
         //     showmarker(item.Latitude,item.Longitude)
         // })
 
-    },[change,fetch])
+    },[change,deletei])
    
     const displaycor = ()=>{
         getItems.forEach(item =>{
@@ -50,16 +50,17 @@ function Inputmap({change,showmarker,loading,getcord}) {
         })
     }
     const deleteitems = id =>{
-        setFetch(!fetch)
+        // setFetch(!fetch)
         const userID = id
         db.collection('marklist').doc(`${userID}`).delete()
         .then(() =>{
             console.log('Item deleted successfully!')
+            setDelete(!deletei)
         })
         .catch(error =>{
             console.log(error)
         })
-        setDelete(!deletei)
+
     }
 
     const completeTask = id =>{
@@ -72,6 +73,14 @@ function Inputmap({change,showmarker,loading,getcord}) {
             console.log(TimeCompare)
             if (TimeCompare > date.getTime()){
                 setSelectedItem(true)
+                db.collection('marklist').doc(`${userID}`).delete()
+                .then(()=>{
+                    setDelete(!deletei)
+                    setFetch(true)
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
             }
             else{
                 setSelectedItem(false)
@@ -82,6 +91,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
 
     return (
         <div className="inputmain">
+            <div>{fetch?<p>Task Complete</p>:<p></p>}</div>
            {
                getItems.length > 0?
                getItems.map(item =>(
