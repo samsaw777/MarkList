@@ -30,8 +30,7 @@ function MapContent(props) {
     const [show,setShow] = useState(false)
     const[lat,setLat] = useState('')
     const [long,setLong] = useState('')
-    const [time,setTime] = useState(new Date())
-    console.log(time)
+
     const [change, setChange] = useState(true)
     const [currentItem, setCurrentItem] = useState({
         text: '',
@@ -46,25 +45,11 @@ function MapContent(props) {
     console.log(getcord)
     let map;
 
-
-    const one = L.marker([19.227528395823438,73.09152603149415])
-    const two = L.marker([19.2301217482413,73.12414169311525])
-
-    useEffect(()=>{
-        // const lat = 19.2301217482413
-        // const long = 73.12414169311525
-        // L.layerGroup([one, two]).addTo(map)
-
-    },[])
     //Show the map
     function Showmap({ coordinates }) {
         map = useMap();
 
         map.setView(coordinates, map.getZoom());
-        // map.on('layeradd',()=>{
-        //     console.log("Hello map loaded!");
-        //     L.layerGroup([one]).addTo(map)
-        // })
         map.on('load',()=>{
          
         })
@@ -74,12 +59,14 @@ function MapContent(props) {
             setLong(lng)
             setLoading(!loading)
             setLat(lat)
+            setTime(new Date())
         })
 
 
         return null
       }
-
+      const [time,setTime] = useState()
+      console.log(time)
 
       //Showing the markers
     //   useEffect(()=>{
@@ -176,6 +163,7 @@ function MapContent(props) {
                                 key: Date.now()
                             })}
                             value={currentItem.text}
+                            autoFocus={true}
                             />
                             <MuiPickersUtilsProvider utils={DateFnsUtils} className='timecontainer'>
                                 <KeyboardTimePicker
