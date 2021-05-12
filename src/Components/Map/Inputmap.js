@@ -13,10 +13,9 @@ function Inputmap({change,showmarker,loading,getcord}) {
     const date = new Date()
     console.log(date.toLocaleTimeString('it-IT'))
     const [itemi,setItemI] = useState()
-    const [itemchangevalue, setItemChangevalue] = useState()
-    const[selectedItemId,setSelectedItemId] = useState()
-    console.log(selectedItemId)
-    console.log(itemchangevalue)
+
+
+    
     useEffect(() =>{
         let getItems  = []
         db.collection('marklist').get()
@@ -29,9 +28,6 @@ function Inputmap({change,showmarker,loading,getcord}) {
             setGetItems(getItems)
         })
         setInarray(!inarray)
-        // getcord.forEach(item =>{
-        //     showmarker(item.Latitude,item.Longitude)
-        // })
 
     },[change,deletei])
    
@@ -83,30 +79,6 @@ function Inputmap({change,showmarker,loading,getcord}) {
 
 
 
-    const updateTask = (id,task) => {
-        setSelectedItemId(id)
-        const tasktoupdate  = task
-        setItemChangevalue(tasktoupdate)
-        setFetch(true)
-    }
-
-
-    const updateForm = ()=>{
-        const itemId = selectedItemId
-        console.log(itemId)
-        if(itemchangevalue){
-        db.collection("marklist").doc(`${selectedItemId}`).update({
-            "Task": `${itemchangevalue}`
-        })
-        .then(()=>{
-            console.log("Document updated")
-        })
-        .catch(error=>{
-            console.log(error)
-        })
-    }
-    }
-
     return (
         <div className="inputmain">
            {
@@ -116,17 +88,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
                        <p>{item.Time}</p>
                        <div className='taskdiv'>
                             <p className='itemtask'>
-                                <form onSubmit={updateForm}>
-                                    <input 
-                                        className='todobox'
-                                        type='text'
-                                        value={fetch?itemchangevalue:item.Task}
-                                        onChange={e => setItemChangevalue(e.target.value)}
-                                        autoFocus={fetch?true:false}
-                                        disabled={fetch?false:true}
-                                    />
-                                    <input type='submit'/>
-                                </form>
+                                {item.Task}
                             </p>
                             <p className='itemaction'>
                                 <a className='completed' onClick={e => completeTask(item.id)}>
@@ -134,9 +96,6 @@ function Inputmap({change,showmarker,loading,getcord}) {
                                 </a>
                                 <a className="text-danger" onClick={e => {deleteitems(item.id)}}>
                                     <i className="far fa-trash-alt"></i>
-                                </a>
-                                <a className='completed' onClick={e => updateTask(item.id,item.Task)}>
-                                    <i class="fa fa-check" aria-hidden="true"></i>
                                 </a>
                             </p>
 
