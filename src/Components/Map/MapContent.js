@@ -1,5 +1,5 @@
 import React,{useState,useEffect}  from 'react'
-import { MapContainer, TileLayer, useMap} from 'react-leaflet'
+import { LayersControl, MapContainer, TileLayer, useMap} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L, { Marker } from 'leaflet'
 import '../CSS/Input.css'  
@@ -10,7 +10,7 @@ import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, KeyboardTimePicker} from '@material-ui/pickers'
 import ShowInput from './Inputmap'
 import {db} from '../../Firebase'
-import { getTime } from 'date-fns'
+
 
 console.log(db)
 let DefaultIcon = L.icon({
@@ -26,7 +26,8 @@ function MapContent(props) {
     ]
 
     // const {Latitude,Longitude} = props.getcord
-    console.log(props.getcord)
+    const cor = props.getcord
+    console.log(cor)
     const [show,setShow] = useState(false)
     const[lat,setLat] = useState('')
     const [long,setLong] = useState('')
@@ -84,7 +85,9 @@ function MapContent(props) {
     //         setGetItems(getItems)
     //     })
     // },[])
-
+    //   useEffect(()=>{
+    //     L.geoJSON(cor).addTo(map)
+    //   },[])
 
       const additems = e =>{
           e.preventDefault()
@@ -143,6 +146,13 @@ function MapContent(props) {
       }
 
 
+    // const Showmarkerfun = ()=>{
+    //     cor.map(cor=>(
+    //         <Marker center={[cor.Latitude,cor.Longitude]}>
+                
+    //         </Marker>
+    //     ))
+    // }
 
 
 
@@ -190,13 +200,14 @@ function MapContent(props) {
         <div className='MainMapContainer'>
             <div className='Mapcontainer'>
                 <MapContainer className="MapContainer" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} id="map">
-                    
+            
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    
+                    {/* <Showmarkerfun /> */}
                     <Showmap coordinates={coordinates} />
+                    {/* {showmarkerfun()} */}
                 </MapContainer>
             </div>
             <div className='Inputcontainer'>
