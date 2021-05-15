@@ -7,7 +7,6 @@ function Inputmap({change,showmarker,loading,getcord}) {
     console.log(getItems)
     const [inarray,setInarray] = useState(true)
     const [deletei,setDelete] = useState(false)
-    const [fetch, setFetch] = useState(false)
     const [selectedItem,setSelectedItem] = useState()
     console.log(selectedItem)
     const date = new Date()
@@ -31,14 +30,14 @@ function Inputmap({change,showmarker,loading,getcord}) {
 
     },[change,deletei])
    
-    const displaycor = ()=>{
-        getItems.forEach(item =>{
-            console.log(item.Latitude)
-           const lat = item.Latitude
-           const long = item.Longitude
-            showmarker(lat,long)
-        })
-    }
+    // const displaycor = ()=>{
+    //     getItems.forEach(item =>{
+    //         console.log(item.Latitude)
+    //        const lat = item.Latitude
+    //        const long = item.Longitude
+    //         showmarker(lat,long)
+    //     })
+    // }
     const deleteitems = id =>{
         // setFetch(!fetch)
         const userID = id
