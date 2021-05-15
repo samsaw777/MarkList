@@ -1,7 +1,7 @@
-import React,{useState,useEffect}  from 'react'
-import { LayersControl, MapContainer, TileLayer, useMap} from 'react-leaflet'
+import React,{useState}  from 'react'
+import {  MapContainer, TileLayer, useMap} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import L, { Marker } from 'leaflet'
+import L from 'leaflet'
 import '../CSS/Input.css'  
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -38,12 +38,12 @@ function MapContent(props) {
         key:''
     })
     console.log(currentItem)
-    const [getItems, setGetItems] = useState([...props.getcord])
-    console.log(getItems)
+    // const [getItems, setGetItems] = useState([...props.getcord])
+    // console.log(getItems)
     const [loading, setLoading] = useState(false)
     console.log(loading)
-    const [getcord,setGetCord] = useState([])
-    console.log(getcord)
+    // const [getcord,setGetCord] = useState([])
+    // console.log(getcord)
     let map;
 
     //Show the map
@@ -91,11 +91,11 @@ function MapContent(props) {
 
       const additems = e =>{
           e.preventDefault()
-          var coordinates = {
-              lat: '',
-              long:''
-          }
-          const allcord = []
+        //   var coordinates = {
+        //       lat: '',
+        //       long:''
+        //   }
+        //   const allcord = []
           if (currentItem.text !==''){
             db.collection("marklist").add({
                 Task: currentItem.text,
@@ -107,26 +107,17 @@ function MapContent(props) {
             })
             .then(()=>{
                 console.log("Documents added sucessfully")
+                setCurrentItem({
+                    text: '',
+                    key:''
+                })
+                setChange(!change)
+          showmarker(lat,long)
             })
             .catch((e)=>{
                 console.error("Error while sending",e)
             })
-            db.collection("marklistcor").add({
-                Latitude: lat,
-                Longitude: long
-            })
-            .then(()=>{
-                console.log("Documents added sucessfully")
-            })
-            .catch((e)=>{
-                console.error("Error while sending",e)
-            })
-            setCurrentItem({
-                      text: '',
-                      key:''
-                  })
-                  setChange(!change)
-            showmarker(lat,long)
+
           }
       }
 
@@ -215,7 +206,7 @@ function MapContent(props) {
                 {
                     show?<div className='Inputform'>{Inputform()}</div>:<div></div>
                 }
-                <ShowInput change={change} showmarker={showmarker} loading={loading} getcord={getcord}/>
+                <ShowInput change={change} showmarker={showmarker} loading={loading}/>
             </div>
 
         </div>
