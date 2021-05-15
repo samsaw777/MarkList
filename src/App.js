@@ -7,7 +7,7 @@ function App() {
   console.log(getcord)
   useEffect(()=>{
     const getItems = []
-    db.collection('marklistcor').get()
+    db.collection('marklist').get()
     .then(snapshot =>{
       snapshot.forEach(item =>{
           let itemID = item.id
