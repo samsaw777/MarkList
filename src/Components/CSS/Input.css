@@ -97,3 +97,65 @@
     cursor: pointer;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:600px){
+
+
+
+
+
+    .MainMapContainer{
+        flex-direction: column;
+        width: 811px;
+    }
+
+    .Inputcontainer{
+        height: 732px;
+    }
+
+    .MapContainer{
+        margin-top: 5px;
+        margin-left: 10px;
+        height: 700px;
+        width: 800px;
+      }
+
+      .Inputcontainerheading{
+          font-size: 40px;
+      }
+
+}
