@@ -1,5 +1,5 @@
 import React,{useState}  from 'react'
-import {  MapContainer, TileLayer, useMap} from 'react-leaflet'
+import {  MapContainer, TileLayer, useMap, Circle} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import '../CSS/Input.css'  
@@ -52,10 +52,15 @@ function MapContent(props) {
 
         map.setView(coordinates, map.getZoom());
         map.on('load',()=>{
-         
+        //  cor.forEach(cors=>(
+        //      L.marker.setLatLng([cors.Latitude,cors.Longitude])
+        //  ))
         })
         map.on('click',(e)=>{
             const {lat, lng} = e.latlng
+        cor.forEach(cors=>{
+             showmarker(cors.Latitude,cors.Longitude)
+            })
             setShow(true)
             setLong(lng)
             setLoading(!loading)
@@ -66,6 +71,9 @@ function MapContent(props) {
 
         return null
       }
+
+
+      
       const [time,setTime] = useState()
       console.log(time)
 
@@ -107,17 +115,16 @@ function MapContent(props) {
             })
             .then(()=>{
                 console.log("Documents added sucessfully")
-                setCurrentItem({
-                    text: '',
-                    key:''
-                })
-                setChange(!change)
-          showmarker(lat,long)
             })
             .catch((e)=>{
                 console.error("Error while sending",e)
             })
-
+            setCurrentItem({
+                text: '',
+                key:''
+            })
+            setChange(!change)
+      showmarker(lat,long)
           }
       }
 
@@ -144,8 +151,11 @@ function MapContent(props) {
     //         </Marker>
     //     ))
     // }
-
-
+    //   const Showcircle = ()=>{
+    //       cor.forEach(cors=>(
+    //           <Circle center={[cors.Latitude,cors.Longitude]} radius={200} />
+    //           ))
+    //   }
 
 
       //Input Component
@@ -197,6 +207,8 @@ function MapContent(props) {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     {/* <Showmarkerfun /> */}
+                    
+                    {/* {Showcircle()} */}
                     <Showmap coordinates={coordinates} />
                     {/* {showmarkerfun()} */}
                 </MapContainer>
