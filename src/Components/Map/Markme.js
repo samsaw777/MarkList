@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Mark from './MapContent'
-
+import '../CSS/Markme.css' 
 function Markme({getcord}) {
     const [coordinate,setCoordinate] = useState({longitude: "",latitude: ""})
     const [loading, setLoading] = useState(false)
@@ -23,7 +23,7 @@ function Markme({getcord}) {
     },[])
     console.log(coordinate)
     return (
-        <div>
+        <div className="markmeouterdiv">
             {/* C */}
             <Mark coordinate={coordinate} loading={loading} getcord={getcord}/>
         </div>
