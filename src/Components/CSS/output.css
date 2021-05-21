@@ -7,7 +7,7 @@
 }
 
 .completedtask{
-    width: 95%;
+    width: 100%;
     background-color:green !important;
     margin-top: 10px;
     border-radius: 10px;
@@ -49,7 +49,7 @@
 
 
 
-@media only screen and (max-width:600px){
+@media only screen and (max-width:800px){
 
 
     .itemoutput > p{
