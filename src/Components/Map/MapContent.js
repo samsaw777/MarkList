@@ -162,7 +162,7 @@ function MapContent(props) {
         const Inputform = ()=>{
             return(
                 <div className="Inputtab">
-                    <div>
+                    
                     <form onSubmit={additems}>
                         <Grid container className='grid'> 
                             <input 
@@ -188,7 +188,7 @@ function MapContent(props) {
                             </Grid>
                             <input type="submit" value="Submit" className="submitbtn"/>
                     </form>
-                    </div>
+                    
                 </div>
             )
         }
