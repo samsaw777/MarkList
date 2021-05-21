@@ -46,3 +46,30 @@
 
 
 
+
+
+
+@media only screen and (max-width:600px){
+
+
+    .itemoutput > p{
+        font-size: 30px;
+    }
+
+    .itemtask {
+        width: 80%;
+        font-size: 35px;
+    }
+    .completed > i {
+        color: #00FF00;
+        cursor: pointer;
+        padding: 1px;
+        font-size: 35px;
+    }
+    .text-danger>i{
+        cursor: pointer;
+        font-size: 35px;
+    }
+
+
+}
