@@ -168,7 +168,7 @@ function MapContent(props) {
                             <input 
                             className='todobox'
                             type='text'
-                            placeholder='Enter your task you want do at selected place'
+                            placeholder='Enter your task: '
                             onChange={e => setCurrentItem({
                                 text: e.target.value,
                                 key: Date.now()

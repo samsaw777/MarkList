@@ -47,37 +47,84 @@
 
 
 
-@media only screen and (max-width:900px){
-
+@media only screen and (max-width:1224px){
+    .itemoutput{
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width:800px){
 
-
+    .itemoutput{
+        width: 100%;
+    }
     .itemoutput > p{
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .itemtask {
-        width: 80%;
-        font-size: 35px;
+        width: 85%;
+        font-size: 25px;
     }
     .completed > i {
         color: #00FF00;
         cursor: pointer;
         padding: 1px;
-        font-size: 35px;
+        font-size: 20px;
     }
     .text-danger>i{
         cursor: pointer;
-        font-size: 35px;
+        font-size: 20px;
     }
     .inputmain {
         width: 100%;
-        height: 750px;
+        /* height: 750px; */
         overflow: scroll;
         
     }
 
 }
 
+
+
+
+@media (max-width: 500px){
+    
+    .itemoutput{
+        width: 100%;
+    }
+
+    .itemoutput > p {
+        font-size: 18px;
+    }
+
+    .itemtask {
+        width: 85%;
+        font-size: 20px;
+    }
+
+    .completed > i {
+        color: #00FF00;
+        cursor: pointer;
+        padding: 1px;
+        font-size: 15px;
+    }
+
+    .text-danger>i {
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+
+}
+
+@media only screen and (max-width:400px){
+    .itemoutput > p {
+        font-size: 15px;
+    }
+
+    .itemtask {
+        width: 80%;
+        font-size: 18px;
+    }
+}
