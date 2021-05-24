@@ -137,7 +137,7 @@
 
 @media only screen and (max-width:1224px){
     .Mapcontainer{ 
-        height: 550px;
+        height: 440px;
         width: 100%;
       }
 
@@ -147,12 +147,12 @@
     }
 
     .Inputcontainer{
-        height: 550px;
+        height: 445px;
     }
 
     .MapContainer{
         margin-top: 5px;
-        height: 550px;
+        height: 440px;
         width: 100%;
       }
 
@@ -171,19 +171,32 @@
         font-size: 30px;
         margin-top: 10px;
     }
+    .Inputcontainer{
+        height: 450px;
+    }
+    .Mapcontainer{
+        height: 435px;
+        width: 100%;
+      }
+
+      .MapContainer{
+        margin-top: 5px;
+        height: 435px;
+        width: 100%;
+      }
 }
 @media only screen and (max-width:500px){
     .Inputcontainer{
         height: 450px;
     }
     .Mapcontainer{
-        height: 500px;
+        height: 435px;
         width: 100%;
       }
 
       .MapContainer{
         margin-top: 5px;
-        height: 500px;
+        height: 435px;
         width: 100%;
       }
 
@@ -195,8 +208,18 @@
 }
 
 @media only screen and (max-width:400px){
-    .Inputcontainerheading {
-        font-size: 18px;
-        margin-top: 10px;
+    .Mapcontainer{
+        height: 430px;
+        width: 100%;
+      }
+
+      .MapContainer{
+        margin-top: 5px;
+        height: 430px;
+        width: 100%;
+      }
+
+      .Inputcontainer{
+        height: 460px;
     }
 }
