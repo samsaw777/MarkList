@@ -5,7 +5,7 @@ import '../CSS/output.css'
 function Inputmap({change,showmarker,loading,getcord}) {
     const [getItems, setGetItems] = useState([])
     console.log(getItems)
-    const [inarray,setInarray] = useState(true)
+    // const [inarray,setInarray] = useState(true)
     const [deletei,setDelete] = useState(false)
     const [selectedItem,setSelectedItem] = useState()
     console.log(selectedItem)
@@ -17,7 +17,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
     
     useEffect(() =>{
         let getItems  = []
-        db.collection('marklist').get()
+        const getdbdata = db.collection('marklist').get()
         .then(snapshot =>{
             snapshot.forEach(item =>{
                 let itemID = item.id
@@ -26,8 +26,9 @@ function Inputmap({change,showmarker,loading,getcord}) {
             })
             setGetItems(getItems)
         })
-        setInarray(!inarray)
+        // setInarray(!inarray)
 
+        return getdbdata
     },[change,deletei])
    
     // const displaycor = ()=>{
@@ -55,7 +56,7 @@ function Inputmap({change,showmarker,loading,getcord}) {
     const completeTask = id =>{
         const userID = id
         setItemI(userID)
-        db.collection('marklist').doc(`${userID}`).get()
+         db.collection('marklist').doc(`${userID}`).get()
         .then(snapshot =>{
             // setSelectedItem(snapshot.data())
             const {TimeCompare} = snapshot.data()
