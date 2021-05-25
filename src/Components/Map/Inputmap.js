@@ -17,7 +17,9 @@ function Inputmap({change,showmarker,loading,getcord}) {
     
     useEffect(() =>{
         let getItems  = []
-        const getdbdata = db.collection('marklist').get()
+        const getdbdata = db.collection('marklist')
+        .orderBy('Time','desc')
+        .get()
         .then(snapshot =>{
             snapshot.forEach(item =>{
                 let itemID = item.id
