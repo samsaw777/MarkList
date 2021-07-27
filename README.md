@@ -5,4 +5,5 @@ Landing page of the App.
 
 
 User can check if the task is completed and also can delete it
-![image](https://user-images.githubusercontent.com/52825565/127165704-83866c7f-5cc5-4947-9263-4e0625b5110a.png)
+![image](https://user-images.githubusercontent.com/52825565/127165954-19531278-bb6d-4695-8bb1-3bc03d01ec6f.png)
+
